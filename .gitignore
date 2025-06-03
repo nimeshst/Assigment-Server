@@ -1,0 +1,49 @@
+# .NET build and publish outputs
+bin/
+obj/
+out/
+*.user
+*.suo
+*.cache
+*.dbmdl
+*.pdb
+
+# VS Code settings
+.vscode/
+
+# Rider / JetBrains IDEs
+.idea/
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Configuration
+appsettings.json
+appsettings.*.json
+
+# Environment files
+.env
+
+# User secrets (if using dotnet user-secrets)
+secrets.json
+
+# Package outputs
+*.nupkg
+*.snupkg
+
+# Test results
+TestResults/
+
+# Auto-generated files
+Generated_Code/
+
+# Others
+*.bak
+*.tmp
+
+# Allow example config files
+!appsettings.example.json
