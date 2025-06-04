@@ -21,22 +21,22 @@ public class DataCollections
         {
             "SetC", new List<Dictionary<string, int>>
             {
-                new Dictionary<string, int> { { "three", 3 } },
-                new Dictionary<string, int> { { "four", 4 } }
+                new Dictionary<string, int> { { "five", 5 } },
+                new Dictionary<string, int> { { "six", 6 } }
             }
         },
         {
             "SetD", new List<Dictionary<string, int>>
             {
-                new Dictionary<string, int> { { "three", 3 } },
-                new Dictionary<string, int> { { "four", 4 } }
+                new Dictionary<string, int> { { "seven", 7 } },
+                new Dictionary<string, int> { { "eight", 8 } }
             }
         },
         {
             "SetE", new List<Dictionary<string, int>>
             {
-                new Dictionary<string, int> { { "three", 3 } },
-                new Dictionary<string, int> { { "four", 4 } }
+                new Dictionary<string, int> { { "nine", 9} },
+                new Dictionary<string, int> { { "ten", 10 } }
             }
         },
     
