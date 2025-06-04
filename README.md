@@ -6,7 +6,7 @@ This project implements a basic TCP client-server architecture in C# to exchange
 .NET 8.0 
 
 
-## 📄 Assignment Summary
+##  Assignment Summary
 
 The client sends a formatted string (e.g., `SetA-Two`) to the server.
 
@@ -18,7 +18,7 @@ The server:
 
 ---
 
-## 🧠 Features
+## Features
 
 - **AES encryption** between client and server
 - **Configurable input** (e.g., IP, port, AES key/IV)
@@ -27,9 +27,9 @@ The server:
 
 ---
 
-## 🔧 Setup & Run
+##  Setup & Run
 
-### 🧩 Clone Repositories
+###  Clone Repositories
 
 ```bash
 # Clone Server
