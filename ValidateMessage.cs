@@ -30,13 +30,10 @@ class Validation
         }
         catch (Exception e)
         {
+            Console.WriteLine(e);
             return -1;
         }
         
-        
         return -1;
-    
-
-        
     }
 }

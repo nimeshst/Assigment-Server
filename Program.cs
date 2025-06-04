@@ -12,7 +12,7 @@ IConfiguration configuration = builder.SetBasePath(AppContext.BaseDirectory)
     .AddJsonFile("appsettings.json ")
     .Build();
 
-
+// initialize variable from config
 int port = int.Parse(configuration["ServerConfig:Port"]);
 int messageDelay = int.Parse(configuration["ServerConfig:MessageDelay"]);
 int bufferSize = int.Parse(configuration["ServerConfig:BufferSize"]);
@@ -23,10 +23,14 @@ string AES_IV = configuration["ServerConfig:AES_IV"];
 Dictionary<string, List<Dictionary<string, int>>> collections = new DataCollections().Collections;
 
 TcpListener tcpListener = new TcpListener(IPAddress.Any, port);
-Console.WriteLine($"inititaling server with endpoints - {tcpListener.LocalEndpoint}");
+Console.WriteLine($"Inititaling server with endpoints - {tcpListener.LocalEndpoint}");
+
+
+Validation validation = new();
+EncryptDecrypt en = new EncryptDecrypt(AES_Key ,AES_IV);
 // start the server
 tcpListener.Start();
-Validation validation = new Validation();
+
 while (true)
 {
     TcpClient tcpClient = await tcpListener.AcceptTcpClientAsync();
@@ -38,10 +42,11 @@ async Task HandleClientAndSendMessage(TcpClient tcpClient, Validation validation
 {
     try
     {
-        EncryptDecrypt en = new EncryptDecrypt(AES_Key ,AES_IV);
+
         NetworkStream networkStream = tcpClient.GetStream();
         var buffer = new byte[bufferSize];
         int received = await networkStream.ReadAsync(buffer, 0, buffer.Length);
+        // remove padding
         byte[] actualData = buffer[..received];
 
         string message = en.Decrypt(actualData);
@@ -55,15 +60,20 @@ async Task HandleClientAndSendMessage(TcpClient tcpClient, Validation validation
         }
         else
         {
-            for (int i = 0; i <= loop; i++)
+            for (int i = 0; i < loop; i++)
             {
-                byte[] sendMessage = en.Encrypt(DateTime.Now.ToString());
+                byte[] sendMessage = en.Encrypt(DateTime.Now.ToString("dd-MM-yy HH:mm:ss"));
 
                 await networkStream.WriteAsync(sendMessage);
                 await Task.Delay(messageDelay);
             }
         }
         tcpClient.Close();
+    }
+    
+    catch (System.IO.IOException IOException)
+    {
+        Console.Write($"Unable to read data {IOException}");
     }
     catch (Exception e)
     {
